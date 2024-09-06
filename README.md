@@ -32,3 +32,13 @@ by passing `PORT=X` to the `run` target, like
 ```sh
 make run PORT=1234
 ```
+
+# Multi-platform build
+
+You can use the `BUILD_OPTS` parameter to build a [multi-platform image][mp], like
+
+```sh
+make build BUILD_OPTS="--platform linux/amd64,linux/arm64"
+```
+
+[mp]: https://docs.docker.com/build/building/multi-platform/

@@ -2,15 +2,16 @@ REPO=snmatt/sndev
 NAME=solarnetwork-postgres
 VER=12
 PORT=5432
+BUILD_OPTS=
 
 build : 
-	docker build -t $(NAME)-$(VER) .
+	docker build $(BUILD_OPTS) --load -t $(NAME)-$(VER) .
 	
 buildstage : 
-	docker build --target build -t $(NAME)-$(VER) .
+	docker build --target build $(BUILD_OPTS) --load -t $(NAME)-$(VER) .
 	
 rebuild : 
-	docker build --no-cache -t $(NAME)-$(VER) .
+	docker build --no-cache $(BUILD_OPTS) --load -t $(NAME)-$(VER) .
 	
 start : 
 	docker start $(NAME)-$(VER)
