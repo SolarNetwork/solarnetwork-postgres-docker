@@ -21,8 +21,11 @@ stop :
 remove : 
 	docker rm $(NAME)-$(VER)
 
+tag:
+	docker tag $(NAME)-$(VER):latest snmatt/sndev:$(NAME)-$(VER)
+
 push:
-	docker push $(NAME)-$(VER):latest snmatt/sndev:$(NAME)-$(VER)
+	docker push snmatt/sndev:$(NAME)-$(VER)
 
 run :
 	docker run -d \
