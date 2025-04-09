@@ -1,8 +1,8 @@
-FROM postgres:12 AS buildenv
+FROM postgres:17 AS buildenv
 
 RUN apt-get update
 
-RUN apt-get install -y --no-install-recommends postgresql-server-dev-12 libkrb5-dev
+RUN apt-get install -y --no-install-recommends postgresql-server-dev-17 libkrb5-dev
 
 RUN apt-get install -y --no-install-recommends ca-certificates git
 
@@ -20,7 +20,7 @@ FROM buildenv AS build
 # Build Timescale
 RUN <<EOF bash
 cd /src/timescaledb
-git checkout 2.10.1
+git checkout 2.19.2
 ./bootstrap
 cd build
 make
@@ -30,7 +30,7 @@ EOF
 # Build aggs_for_vecs
 RUN <<EOF bash
 cd /src/aggs_for_vecs
-git checkout v1.3.0
+git checkout v1.3.2
 make
 make install DESTDIR=/stage
 EOF
@@ -42,7 +42,7 @@ git checkout develop
 EOF
 
 # Copy extensions into final image
-FROM postgres:12
+FROM postgres:17
 
 COPY --from=build /stage /
 

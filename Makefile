@@ -1,6 +1,6 @@
 REPO=snmatt/sndev
 NAME=solarnetwork-postgres
-VER=12
+VER=17
 PORT=5432
 BUILD_OPTS=
 
